@@ -1,18 +1,18 @@
 import { Client, Presence, register, User } from "discord-rpc";
-
 import { appDependencies, trayManager } from "../index";
-
 import { config, getConfig } from "./store";
 import { Browser } from "./browser";
 import { Bridge } from "./bridge";
 import { SongData } from "./SongData";
-
 import { checkSupporter } from "../utils/checkSupporter";
 import { songDataSearchStation } from "../utils/advancedSongDataSearch";
 import { getLibrarySongArtwork } from "../utils/getLibrarySongArtwork";
 import { replaceVariables } from "../utils/replaceVariables";
-
 import * as log from "electron-log";
+
+// CHANGE THIS ID to your own ID from the Discord Developer Portal 
+// to make the title say "AppleRPC"
+const CLIENT_ID = "842112189618978897"; 
 
 export class Discord {
     private client: Client;
@@ -23,7 +23,7 @@ export class Discord {
     public activity: Presence = {};
     public isLive: boolean = false;
     public isConnected: boolean = false;
-    public currentTrack: currentTrack;
+    public currentTrack: any; // Updated to any if type is not imported
     public isSupporter: boolean = null;
     public songData: SongData = new SongData();
 
@@ -126,7 +126,7 @@ export class Discord {
 
         this.client
             .login({
-                clientId: "842112189618978897"
+                clientId: CLIENT_ID
             })
             .then(async (client) => {
                 log.info("[DISCORD]", `Client logged in ${client.user.id}`);
@@ -149,31 +149,25 @@ export class Discord {
             .catch((err) => {
                 log.error("[DISCORD]", `Client login error: ${err}`);
                 log.info("[DISCORD]", "Retrying in 5 seconds...");
-
-                // Could not connect: Discord (most likely) not running
-                // RPC_CONNECTION_TIMEOUT: Discord (most likely) running and needs restart (most of the time)
-                // -> retry in 5 seconds
-
                 setTimeout(() => this.connect(), 5000);
             });
 
         this.client.on("disconnected", () => {
             log.info("[DISCORD]", "Client disconnected");
-
             this.isReady = false;
             this.isConnected = false;
-
             trayManager.discordConnectionUpdate(false);
-
             this.connect();
         });
 
-        register("842112189618978897");
+        register(CLIENT_ID);
     }
 
     setActivity(activity: Presence) {
         if (!config.get("showTimestamps")) delete activity.endTimestamp;
 
+        // Force 'Listening to...' type
+        activity.type = 2; 
         this.activity = activity;
 
         if (this.isReady) {
@@ -192,7 +186,6 @@ export class Discord {
                 });
         } else {
             if (!this.startUp) this.connect();
-
             this.triggerAfterReady.push(() => this.setActivity(activity));
         }
     }
@@ -200,7 +193,6 @@ export class Discord {
     clearActivity() {
         if (this.isReady) {
             const time = Date.now();
-
             this.client
                 .clearActivity()
                 .then(() => {
@@ -210,26 +202,24 @@ export class Discord {
                     );
                 })
                 .catch((err) => {
-                    log.error(
-                        "[DISCORD][clearActivity]",
-                        `Client error: ${err}`
-                    );
+                    log.error("[DISCORD][clearActivity]", `Client error: ${err}`);
                 });
         } else {
             if (!this.startUp) this.connect();
-
             this.triggerAfterReady.push(() => this.clearActivity());
         }
     }
 
-    async setCurrentTrack(currentTrack: currentTrack) {
+    async setCurrentTrack(currentTrack: any) {
         const thisCurrenTrack = this.currentTrack;
 
         if (thisCurrenTrack) delete thisCurrenTrack.url;
         if (thisCurrenTrack === currentTrack) return;
 
-        const activity: Presence = {},
-            replacedVars = new replaceVariables(currentTrack);
+        const activity: Presence = {
+            type: 2 // Listening
+        };
+        const replacedVars = new replaceVariables(currentTrack);
 
         activity.largeImageText = replacedVars.getResult("largeImageText");
         activity.largeImageKey = getConfig("artwork");
@@ -254,12 +244,10 @@ export class Discord {
         }
 
         this.currentTrack = currentTrack;
-
         this.setActivity(activity);
 
         if (this.isLive) {
             const songData = await songDataSearchStation(currentTrack.name);
-
             if (songData.artwork) activity.largeImageKey = songData.artwork;
             if (songData.url)
                 activity.buttons = [
@@ -356,10 +344,8 @@ export class Discord {
                         "[DISCORD][setCurrentTrack][getSongData]",
                         `Error: ${err}`
                     );
-
                     delete activity.buttons;
                     delete this.activity.buttons;
-
                     reject(err);
                 });
         });
@@ -367,7 +353,6 @@ export class Discord {
 
     static getInstance() {
         if (!Discord.instance) new Discord();
-
         return Discord.instance;
     }
 
@@ -379,7 +364,7 @@ export class Discord {
         Discord.getInstance().clearActivity();
     }
 
-    static setCurrentTrack(currentTrack: currentTrack) {
+    static setCurrentTrack(currentTrack: any) {
         Discord.getInstance().setCurrentTrack(currentTrack);
     }
 }
@@ -387,10 +372,9 @@ export class Discord {
 export function getUserData(): Promise<User> {
     return new Promise((resolve, reject) => {
         const client = new Client({ transport: "ipc" });
-
         client
             .login({
-                clientId: "686635833226166279"
+                clientId: CLIENT_ID
             })
             .then(({ user }) => client.destroy().then(() => resolve(user)))
             .catch(reject);
