@@ -167,7 +167,7 @@ export class Discord {
         if (!config.get("showTimestamps")) delete activity.endTimestamp;
 
         // Force 'Listening to...' type
-        activity.type = 2; 
+        (activity as any).type = 2;
         this.activity = activity;
 
         if (this.isReady) {
