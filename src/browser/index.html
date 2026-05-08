@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>AppleRPC (cracked)</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"
+        />
+    </head>
+    <body data-theme="light">
+        <div class="control">
+            <div class="windowcontrols">
+                <span class="dot close"></span>
+                <span class="dot minimize"></span>
+                <span class="dot notavailable"></span>
+            </div>
+
+            <div class="center">
+                <div>
+                    <!--                    <i-->
+                    <!--                        class="fa-solid fa-thumbs-up"-->
+                    <!--                        id="thumbsUp"-->
+                    <!--                        style="display: none"-->
+                    <!--                    ></i>-->
+                </div>
+                <div>
+                    <img src="../assets/logo.png" alt="Logo" class="logo" />
+                </div>
+                <div>
+                    <!--                    <i-->
+                    <!--                        class="fa-solid fa-thumbs-down"-->
+                    <!--                        id="thumbsDown"-->
+                    <!--                        style="display: none"-->
+                    <!--                    ></i>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <form id="config">
+                <div class="settings">
+                    <div class="notes"></div>
+
+                    <div class="settings_category" id="general">
+                        <div class="category__header">
+                            <h3 data-i18n="settings.category.general">
+                                General
+                            </h3>
+                        </div>
+
+                        <div class="category__content">
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label data-for="config_autoLaunch">
+                                        Auto Launch
+                                    </label>
+                                    <label class="cfgSwitch cfg_loading">
+                                        <input
+                                            type="checkbox"
+                                            id="config_autoLaunch"
+                                        />
+                                        <i></i>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label data-for="config_wakandaForeverMode">
+                                        Wakanda Forever Mode
+                                    </label>
+                                    <label class="cfgSwitch">
+                                        <input
+                                            type="checkbox"
+                                            id="config_wakandaForeverMode"
+                                        />
+                                        <i></i>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label for="config_colorTheme">
+                                        Preferred Color Theme
+                                    </label>
+                                    <select
+                                        class="cfg_loading"
+                                        id="config_colorTheme"
+                                    >
+                                        <option value="dark">Dark</option>
+                                        <option value="light">Light</option>
+                                        <option value="auto">
+                                            Dark from Sunset to Sunrise
+                                        </option>
+                                        <option value="os">System theme</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label for="config_language">
+                                        App Language
+                                    </label>
+                                    <select
+                                        class="cfg_loading"
+                                        id="config_language"
+                                    >
+                                        <option selected="selected" disabled>
+                                            Loading...
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="setting_note">
+                                    <span
+                                        data-i18n="settings.note.language"
+                                        data-i18n-vars="url=https://discord.gg/qqAgCHS"
+                                    >
+                                        If your language is missing,
+                                        <a href="https://discord.gg/qqAgCHS">
+                                            contact us.
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div
+                                class="settings_setting"
+                                data-restriction-os="win32"
+                                data-restriction-os-remove
+                            >
+                                <div class="setting_main">
+                                    <label for="config_service">
+                                        Service
+                                    </label>
+                                    <select
+                                        class="cfg_loading"
+                                        id="config_service"
+                                        data-restart="true"
+                                    >
+                                        <option value="itunes">iTunes</option>
+                                        <option value="music">
+                                            Apple Music
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="settings_category"
+                        id="software-update"
+                        data-restriction-msstore
+                        data-restriction-os="win32"
+                    >
+                        <div class="category__header">
+                            <h3 data-i18n="settings.category.softwareUpdate">
+                                Software Update
+                            </h3>
+                        </div>
+
+                        <div class="category__content">
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label data-for="config_autoUpdates">
+                                        Automatic Updates
+                                    </label>
+                                    <label class="cfgSwitch cfg_loading">
+                                        <input
+                                            type="checkbox"
+                                            id="config_autoUpdates"
+                                        />
+                                        <i></i>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label data-for="config_betaUpdates">
+                                        Beta Updates
+                                    </label>
+                                    <label class="cfgSwitch cfg_loading">
+                                        <input
+                                            type="checkbox"
+                                            id="config_betaUpdates"
+                                        />
+                                        <i></i>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div
+                                class="settings_setting"
+                                id="installUpdateSetting"
+                            >
+                                <div class="setting_main">
+                                    <label
+                                        data-i18n="settings.config.installUpdate.label"
+                                    >
+                                        Install Update
+                                    </label>
+                                    <button
+                                        class="cfgButton cfg_loading"
+                                        id="installUpdate"
+                                        data-i18n="settings.config.installUpdate.buttonNA"
+                                        data-i18n-vars="version=N/A"
+                                    >
+                                        No update available
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="settings_category"
+                        id="watchdog"
+                        data-restriction-os="win32"
+                    >
+                        <div class="category__header">
+                            <h3 style="display: flex; align-items: center">
+                                WatchDog
+                                <span
+                                    style="
+                                        font-size: 0.65em;
+                                        margin-left: 0.5rem;
+                                        padding: 0.25em 0.66em;
+                                        background: #fa586a;
+                                        color: white;
+                                        border-radius: 16px;
+                                    "
+                                >
+                                    BETA
+                                </span>
+                            </h3>
+                        </div>
+
+                        <div class="category__content">
+                            <div
+                                class="settings_setting"
+                                data-restriction-setting="service"
+                                data-restriction-setting-value="music"
+                            >
+                                <div class="setting_main">
+                                    <label
+                                        data-for="config_watchdog.autoUpdates"
+                                    >
+                                        Automatically Download & Install Updates
+                                    </label>
+                                    <label class="cfgSwitch cfg_loading">
+                                        <input
+                                            type="checkbox"
+                                            id="config_watchdog.autoUpdates"
+                                        />
+                                        <i></i>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div
+                                class="settings_setting"
+                                data-restriction-setting="service"
+                                data-restriction-setting-value="music"
+                            >
+                                <div class="setting_main">
+                                    <label
+                                        data-for="config_watchdog.mirrorAppState"
+                                    >
+                                        Start & Stop WatchDog with AMRPC
+                                    </label>
+                                    <label class="cfgSwitch cfg_loading">
+                                        <input
+                                            type="checkbox"
+                                            id="config_watchdog.mirrorAppState"
+                                        />
+                                        <i></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings_category" id="rpc">
+                        <div class="category__header">
+                            <h3>Rich Presence</h3>
+                        </div>
+
+                        <div class="category__content">
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label data-for="config_show">
+                                        Show Presence
+                                    </label>
+                                    <label class="cfgSwitch cfg_loading">
+                                        <input
+                                            type="checkbox"
+                                            id="config_show"
+                                        />
+                                        <i></i>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label data-for="config_hideOnPause">
+                                        Hide Presence on Pause
+                                    </label>
+                                    <label class="cfgSwitch cfg_loading">
+                                        <input
+                                            type="checkbox"
+                                            id="config_hideOnPause"
+                                        />
+                                        <i></i>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label data-for="config_showTimestamps">
+                                        Show Timestamps
+                                    </label>
+                                    <label class="cfgSwitch cfg_loading">
+                                        <input
+                                            type="checkbox"
+                                            id="config_showTimestamps"
+                                        />
+                                        <i></i>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label data-for="config_showAlbumArtwork">
+                                        Show Album Artwork
+                                    </label>
+                                    <label class="cfgSwitch cfg_loading">
+                                        <input
+                                            type="checkbox"
+                                            id="config_showAlbumArtwork"
+                                        />
+                                        <i></i>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label data-for="config_artworkPrioLocal">
+                                        Prioritize Local Artwork
+                                    </label>
+                                    <label class="cfgSwitch cfg_loading">
+                                        <input
+                                            type="checkbox"
+                                            id="config_artworkPrioLocal"
+                                        />
+                                        <i></i>
+                                    </label>
+                                </div>
+                                <div class="setting_note">
+                                    <span
+                                        data-i18n="settings.note.artworkPrioLocal"
+                                    >
+                                        If local artwork is available, it will
+                                        be used instead of the one from Apple
+                                        Music API. (Currently unavailable completely due to deprecation of the website)
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label for="config_artwork">
+                                        Default Artwork
+                                    </label>
+                                    <select
+                                        class="cfg_loading"
+                                        id="config_artwork"
+                                    >
+                                        <option value="applemusic-logo">
+                                            Default
+                                        </option>
+                                        <option value="applemusic-logo-rainbow">
+                                            gay
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div
+                                class="settings_setting"
+                                data-enableReset="true"
+                            >
+                                <div class="setting_main">
+                                    <label for="config_rpcLargeImageText">
+                                        Presence Large Image Text (CRACKED)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        class="cfg_loading"
+                                        id="config_rpcLargeImageText"
+                                    />
+                                </div>
+                            </div>
+
+                            <div
+                                class="settings_setting"
+                                data-enableReset="true"
+                            >
+                                <div class="setting_main">
+                                    <label for="config_rpcDetails">
+                                        Presence Details
+                                    </label>
+                                    <input
+                                        type="text"
+                                        class="cfg_loading"
+                                        id="config_rpcDetails"
+                                    />
+                                </div>
+                            </div>
+
+                            <div
+                                class="settings_setting"
+                                data-enableReset="true"
+                            >
+                                <div class="setting_main">
+                                    <label for="config_rpcState">
+                                        Presence State
+                                    </label>
+                                    <input
+                                        type="text"
+                                        class="cfg_loading"
+                                        id="config_rpcState"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings_category" id="lastfm">
+                        <div class="category__header">
+                            <h3>Last.fm</h3>
+                        </div>
+
+                        <div class="category__content">
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label data-for="config_enableLastFM">
+                                        Enable Last.fm
+                                    </label>
+                                    <label class="cfgSwitch cfg_loading">
+                                        <input
+                                            type="checkbox"
+                                            id="config_enableLastFM"
+                                        />
+                                        <i></i>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label
+                                        data-i18n="settings.config.lastFMUser.label"
+                                    >
+                                        Last.fm User
+                                    </label>
+                                    <button
+                                        class="cfgButton"
+                                        id="connectLastFM"
+                                    >
+                                        ...
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings_category" id="cache">
+                        <div class="category__header">
+                            <h3 data-i18n="settings.category.cache">
+                                Cache Management
+                            </h3>
+                        </div>
+
+                        <div class="category__content">
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label data-for="config_enableCache">
+                                        Enable Cache
+                                    </label>
+                                    <label class="cfgSwitch cfg_loading">
+                                        <input
+                                            type="checkbox"
+                                            id="config_enableCache"
+                                        />
+                                        <i></i>
+                                    </label>
+                                </div>
+                                <div class="setting_note">
+                                    <span
+                                        data-i18n="settings.note.cache.size"
+                                        id="cacheNoteSize"
+                                    >
+                                        Current cache size: ...
+                                    </span>
+                                    <hr
+                                        style="
+                                            animation: cache-loading 30s
+                                                infinite linear;
+                                        "
+                                    />
+                                    <span data-i18n="settings.note.cache.warn">
+                                        <b>WARNING</b> Disabling the cache will
+                                        delete all cached data.
+                                    </span>
+                                    <br />
+                                    <span data-i18n="settings.note.cache.info">
+                                        Song data such as the artwork or link is
+                                        saved so that it can be displayed faster
+                                        in the RPC.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label
+                                        data-i18n="settings.config.resetCache"
+                                    >
+                                        Reset Cache
+                                    </label>
+                                    <button
+                                        class="cfgButton red"
+                                        data-action="resetCache"
+                                        data-i18n="settings.common.reset"
+                                    >
+                                        Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings_category" id="advanced">
+                        <div class="category__header">
+                            <h3 data-i18n="settings.category.advanced">
+                                Advanced
+                            </h3>
+                        </div>
+
+                        <div class="category__content">
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label
+                                        data-for="config_hardwareAcceleration"
+                                    >
+                                        Hardware Acceleration
+                                    </label>
+                                    <label class="cfgSwitch cfg_loading">
+                                        <input
+                                            type="checkbox"
+                                            id="config_hardwareAcceleration"
+                                            data-restart="true"
+                                        />
+                                        <i></i>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings_setting">
+                                <div class="setting_main">
+                                    <label
+                                        data-for="config_checkIfMusicInstalled"
+                                    >
+                                        Check if Music is installed
+                                    </label>
+                                    <label class="cfgSwitch cfg_loading">
+                                        <input
+                                            type="checkbox"
+                                            id="config_checkIfMusicInstalled"
+                                        />
+                                        <i></i>
+                                    </label>
+                                </div>
+                                <div class="setting_note">
+                                    <span
+                                        data-i18n="settings.note.checkIfMusicInstalled"
+                                    >
+                                        Disable this only if you're encountering
+                                        issues with the checks, and you're sure
+                                        that Music is installed.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="extra-left">
+            <span id="extra_version">Version</span>
+        </div>
+
+        <div class="extra">
+            <span id="download-progress" style="display: none; cursor: auto">
+                <progress max="100" value="0"></progress>
+            </span>
+            <span
+                onclick="window.electron.openURL('https://github.com/zephraOSS/Apple-Music-RPC')"
+                id="github"
+            >
+                <i class="fa-brands fa-github"></i>
+            </span>
+            <span
+                onclick="window.electron.openURL('https://docs.amrpc.zephra.cloud/contribution/how-to-create-a-bug-report')"
+            >
+                <i class="fa-solid fa-bug"></i>
+            </span>
+            <span
+                onclick="window.electron.openURL('https://ko-fi.com/zephra')"
+                id="ko-fi"
+            >
+                <i class="fa-solid fa-hand-holding-heart"></i>
+            </span>
+            <span onclick="reload(this)" id="reloadPage">
+                <i class="fa-solid fa-rotate-right"></i>
+            </span>
+            <span
+                onclick="window.electron.restart()"
+                style="display: none"
+                id="restartApp"
+            >
+                <i class="fa-solid fa-rotate-right" style="color: #ef4a4a"></i>
+                <span style="color: #ef4a4a">Restart required</span>
+            </span>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script type="module" src="renderer/index.js"></script>
+        <script>
+            function reload(ele) {
+                const i = ele.querySelector("i");
+
+                i.style.width = "unset";
+                i.classList.remove("fa-rotate-right");
+                i.classList.add("fa-sync", "fa-spin");
+
+                window.electron.reload();
+            }
+
+            async function updateDataChangelogJS(version, state) {
+                const changelog = await window.electron.appData.get(
+                    "changelog"
+                );
+
+                changelog[version] = state;
+
+                window.electron.appData.set("changelog", changelog);
+            }
+        </script>
+    </body>
+</html>
